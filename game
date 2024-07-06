@@ -1,0 +1,9 @@
+package FinalProject;
+
+public class Sankegame{
+
+
+    public static void main(String[] args) {
+        new GameFrame();
+    }
+}

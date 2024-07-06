@@ -1,0 +1,58 @@
+package FinalProject;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class GameFrame extends JFrame {
+
+    private GamePanel gamePanel;
+
+    GameFrame() {
+        setTitle("Snake");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        BackgroundPanel backgroundPanel = new BackgroundPanel();
+        backgroundPanel.setLayout(new BorderLayout());
+
+        // Initialize GamePanel and make it transparent
+        gamePanel = new GamePanel();
+        gamePanel.setOpaque(false);
+
+        // Add the GamePanel to the BackgroundPanel
+        backgroundPanel.add(gamePanel, BorderLayout.CENTER);
+        setContentPane(backgroundPanel);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
+        
+
+        public BackgroundPanel() {
+            try {
+                backgroundImage = new ImageIcon(ClassLoader.getSystemResource("FinalProject/Images/Wood-Texture.jpg")).getImage();
+                
+            } catch (Exception e) {
+                System.out.println("Image not found");
+            }
+        }
+
+        
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+
+        
+            
+        }
+    }
+
+    public static void main(String[] args) {
+        new GameFrame();
+    }
+}
